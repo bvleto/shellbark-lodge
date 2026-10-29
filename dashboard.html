@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shellbark Lodge Dashboard</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Georgia, serif;
+        background: #0b120f;
+        color: #f3efe7;
+      }
+      .wrap {
+        max-width: 900px;
+        margin: 80px auto;
+        padding: 32px;
+        background: rgba(18, 33, 29, 0.9);
+        border: 1px solid rgba(199,163,93,0.4);
+        border-radius: 18px;
+      }
+      h1 { color: #c7a35d; }
+      a { color: #c7a35d; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Member Dashboard</h1>
+      <p id="userWelcome">Loading...</p>
+      <p><a href="index.html">Return to home</a></p>
+    </div>
+
+    <script>
+      const token = localStorage.getItem("shellbark_token");
+      const user = JSON.parse(localStorage.getItem("shellbark_user") || "null");
+
+      if (!token || !user) {
+        window.location.href = "index.html";
+      } else {
+        document.getElementById("userWelcome").textContent = `Welcome, ${user.name || user.email}`;
+      }
+    </script>
+  </body>
+</html>
